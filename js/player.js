@@ -96,6 +96,7 @@ const m = {
     standingOn: undefined,
     numTouching: 0,
     crouch: false,
+    sprint: false,
     // isHeadClear: true,
     spawnPos: {
         x: 0,
@@ -270,12 +271,22 @@ const m = {
             } else {
                 player.force.x -= m.Fx
             }
+            if (input.shift) {
+                if (moveX > -3) {
+                    player.force.x *= 1.5
+                }
+            }
             // }
         } else if (input.right) {
             if (moveX < 2) {
                 player.force.x += m.Fx * 1.5
             } else {
                 player.force.x += m.Fx
+            }
+            if (input.shift) {
+                if (moveX < 3) {
+                    player.force.x *= 1.5
+                }
             }
         } else {
             const stoppingFriction = 0.92; //come to a stop if no move key is pressed
